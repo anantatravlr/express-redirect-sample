@@ -71,6 +71,7 @@ app.get('/api/quotes', (req, res) => {
   })
   .catch((error) => {
     console.log(error);
+    res.status(error.response.status).send(error.response.statusText)
   });  
 })
 
@@ -96,7 +97,8 @@ app.get('/api/quotes/:id', (req, res) => {
     res.json(response.data)
   })
   .catch((error) => {
-    console.log(error);
+    console.log(error.response);
+    res.status(error.response.status).send(error.response.statusText)
   });
 })
 
@@ -130,6 +132,7 @@ app.post('/api/quotes/update-customer/:id',(req, res) => {
   })
   .catch((error) => {
     console.log(error);
+    res.status(error.response.status).send(error.response.statusText)
   });
 })
 
@@ -159,6 +162,7 @@ app.post('/api/quotes/update-commission/:id',(req, res) => {
   })
   .catch((error) => {
     console.log(error);
+    res.status(error.response.status).send(error.response.statusText)
   });
 })
 
@@ -193,6 +197,7 @@ app.post('/api/quotes/send-email',(req, res) => {
   })
   .catch((error) => {
     console.log(error);
+    res.status(error.response.status).send(error.response.statusText)
   });
 })
 
@@ -202,7 +207,7 @@ app.delete('/api/quotes/:id', (req, res) => {
   let config = {
     method: 'delete',
     maxBodyLength: Infinity,
-    url: `https://10travlr.odin.travlr.com/api/quotes/1${id}`,
+    url: `https://10travlr.odin.travlr.com/api/quotes/${id}`,
     headers: { 
       'Cookie': 'travlr_sso_token=b39179621d60c5ff5702f4c832f19ecc'
     }
@@ -215,6 +220,7 @@ app.delete('/api/quotes/:id', (req, res) => {
     res.json(response.data)
   })
   .catch((error) => {
-    console.log(error);
+    console.log(error.response);
+    res.status(error.response.status).send(error.response.statusText)
   });
 })
